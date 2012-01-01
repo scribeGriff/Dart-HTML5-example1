@@ -1,0 +1,6 @@
+Using the HTML5 <input> range Attribute with setInterval() in Dart
+Blog Post Companion Code
+
+HTML5 adds a number of useful type attributes for the <input> tag, including fields for validating email addresses, entering dates, and providing a color picker. Although browser adoption has so far been somewhat inconsistent as of this writing, one attribute that has been of particular interest is the range attribute, more commonly referred to as the slider. Not currently supported by either Firefox (surprisingly) and IE (less so), the remaining popular browsers (Chrome, Safari and Opera) do offer support for this attribute of the <input> tag.
+
+For this example, we will use the slider to control setInterval(myFun, delay)'s fixed time delay when calling function myFun(). We will also mention an alternative method for accomplishing approximately the same thing with setTimeout() that may be more robust for certain scenarios. We also create a simple web page, coded in Dart including styling and page elements, to display our example.
