@@ -21,17 +21,17 @@ class HtmlInDart {
       ..type = "text/css"
       ..innerHTML = "#home {background-color: #E1CF75;"
           "font-family: Verdana, Geneva, sans-serif;}"
-      ..addHTML("#page {width:1000px; margin:20px auto;"
+      ..addHtml("#page {width:1000px; margin:20px auto;"
           "background-color:rgba(255,255,255,0.7); border-radius:15px; overflow:hidden;}")
-      ..addHTML("#output {width:50%; height:600px; margin:10px; padding:20px;"
+      ..addHtml("#output {width:50%; height:600px; margin:10px; padding:20px;"
           "background-color:white; float:right; border-top-right-radius:20px;"
           "border-bottom-right-radius:20px; overflow:auto;}")
-      ..addHTML("#titleHeading {margin:30px; text-align:center; border-bottom: 2px inset Khaki;"
+      ..addHtml("#titleHeading {margin:30px; text-align:center; border-bottom: 2px inset Khaki;"
     		  "overflow:hidden; padding-bottom:10px;}")
-      ..addHTML("#input1 {width:30%; margin:30px 50px; padding:0 20px 20px 20px;"
+      ..addHtml("#input1 {width:30%; margin:30px 50px; padding:0 20px 20px 20px;"
           " border-bottom: 2px inset Khaki;}")
-      ..addHTML("#input2 {width:30%; margin:30px 50px; padding:0 20px;}")
-      ..addHTML("h4 {text-align:center;}");
+      ..addHtml("#input2 {width:30%; margin:30px 50px; padding:0 20px;}")
+      ..addHtml("h4 {text-align:center;}");
 
     c.complete(this);
     return c.future;
@@ -168,7 +168,7 @@ class HtmlInDart {
   }
 
   void write(String message) {
-    query('#output').addHTML("$message<br>");
+    query('#output').addHtml("$message<br>");
     query('#output').scrollTop = 100000;
   }
 }
