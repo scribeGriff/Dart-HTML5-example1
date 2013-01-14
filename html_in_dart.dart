@@ -13,25 +13,26 @@ class HtmlInDart {
 
   Future<HtmlInDart> createStyles() {
     final c = new Completer();
+    print("here i am creating styles");
     // Adds the opening and closing <style> tags, sets the type and adds it to the head section.
     var myStyle = new StyleElement();
     document.head.nodes.add(myStyle);
     // Defines most of the styles used in the example.  A few styles have been defined inline.
     myStyle
       ..type = "text/css"
-      ..innerHTML = "#home {background-color: #E1CF75;"
+      ..innerHtml = "#home {background-color: #E1CF75;"
           "font-family: Verdana, Geneva, sans-serif;}"
-      ..addHtml("#page {width:1000px; margin:20px auto;"
+      ..appendHtml("#page {width:1000px; margin:20px auto;"
           "background-color:rgba(255,255,255,0.7); border-radius:15px; overflow:hidden;}")
-      ..addHtml("#output {width:50%; height:600px; margin:10px; padding:20px;"
+      ..appendHtml("#output {width:50%; height:600px; margin:10px; padding:20px;"
           "background-color:white; float:right; border-top-right-radius:20px;"
           "border-bottom-right-radius:20px; overflow:auto;}")
-      ..addHtml("#titleHeading {margin:30px; text-align:center; border-bottom: 2px inset Khaki;"
+      ..appendHtml("#titleHeading {margin:30px; text-align:center; border-bottom: 2px inset Khaki;"
     		  "overflow:hidden; padding-bottom:10px;}")
-      ..addHtml("#input1 {width:30%; margin:30px 50px; padding:0 20px 20px 20px;"
+      ..appendHtml("#input1 {width:30%; margin:30px 50px; padding:0 20px 20px 20px;"
           " border-bottom: 2px inset Khaki;}")
-      ..addHtml("#input2 {width:30%; margin:30px 50px; padding:0 20px;}")
-      ..addHtml("h4 {text-align:center;}");
+      ..appendHtml("#input2 {width:30%; margin:30px 50px; padding:0 20px;}")
+      ..appendHtml("h4 {text-align:center;}");
 
     c.complete(this);
     return c.future;
@@ -39,6 +40,7 @@ class HtmlInDart {
 
   Future<HtmlInDart> buildPage() {
     final c = new Completer();
+    print("here i am building a page");
     // Create a page div that will enclose our example and add it to the body section.
     var page = new DivElement();
     page.id = "page";
@@ -92,7 +94,7 @@ class HtmlInDart {
       "id": "commenceButton",
       "type": "button",
     });
-    commenceButton.innerHTML = "commence";
+    commenceButton.innerHtml = "commence";
     inputCont1.nodes.add(commenceButton);
 
     // The second interface element is a slider (or range) element.
@@ -128,6 +130,7 @@ class HtmlInDart {
   Future<HtmlInDart> addListeners() {
     final c = new Completer();
 
+    print("here i am adding a listener");
     query('#commenceButton').on.click.add(
         (e) => startConsuming());
 
@@ -141,7 +144,7 @@ class HtmlInDart {
 
   void startConsuming() {
     query('#commenceButton').attributes['disabled'] = 'disabled';
-    query('#output').innerHTML = "";
+    query('#output').innerHtml = "";
     numBottles.value == "" ? numBottles.value = "24" : numBottles.value;
     bottleNumber = int.parse(numBottles.value) ;
     bottleNumber > 99 || bottleNumber < 1 ? bottleNumber = 24 : bottleNumber;
@@ -168,13 +171,15 @@ class HtmlInDart {
   }
 
   void write(String message) {
-    query('#output').addHtml("$message<br>");
+    query('#output').appendHtml("$message<br>");
     query('#output').scrollTop = 100000;
   }
 }
 
 void main() {
-  var htmlExample = new HtmlInDart().createStyles()
-      .chain((HtmlInDart htmlExample) => htmlExample.buildPage())
-      .chain((HtmlInDart htmlExample) => htmlExample.addListeners());
+
+  var htmlExample = new HtmlInDart().createStyles();
+  htmlExample
+      ..then((htmlExample) => htmlExample.buildPage())
+      ..then((htmlExample) => htmlExample.addListeners());
 }
