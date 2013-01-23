@@ -1,13 +1,15 @@
 # Using HTML5 input range Attribute with the Timer Class in Dart #
 
-Compliant with Dart Editor version 0.2.10 r16761  
- Dart SDK version 0.2.10.1 r16761   
-9:31 PM Sunday, January 13, 2013   
+Compliant with Dart Editor version 0.3.1 r17463  
+  Dart SDK version 0.3.1.2 r17463   
+4:40 PM Wednesday, January 23, 2013   
 Blog entry at [scribeGriff.com/studios](http://www.scribegriff.com/studios/index.php?post/2011/12/28/Using-the-HTML5-input-range-Attribute-with-setInterval-in-Dart)  
-Comments: Update to M2.    
+Comments: Update to M3.    
 Tags: Dart, Timer, HTML, DOM
 
 ----------
+
+**Update 23 January 2013:** Update to M3 required removing dart:isolate library import and adding dart:async library.  Both futures and the timer class are now in the async library.
 
 **Update 13 January 2013:** Some minor changes as Dart marches towards version 2 of the html library: 
 

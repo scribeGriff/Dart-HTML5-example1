@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:math';
-import 'dart:isolate';
+import 'dart:async';
 
 class HtmlInDart {
   InputElement numBottles;
@@ -13,7 +13,6 @@ class HtmlInDart {
 
   Future<HtmlInDart> createStyles() {
     final c = new Completer();
-    print("here i am creating styles");
     // Adds the opening and closing <style> tags, sets the type and adds it to the head section.
     var myStyle = new StyleElement();
     document.head.nodes.add(myStyle);
@@ -40,7 +39,6 @@ class HtmlInDart {
 
   Future<HtmlInDart> buildPage() {
     final c = new Completer();
-    print("here i am building a page");
     // Create a page div that will enclose our example and add it to the body section.
     var page = new DivElement();
     page.id = "page";
@@ -130,7 +128,6 @@ class HtmlInDart {
   Future<HtmlInDart> addListeners() {
     final c = new Completer();
 
-    print("here i am adding a listener");
     query('#commenceButton').on.click.add(
         (e) => startConsuming());
 
