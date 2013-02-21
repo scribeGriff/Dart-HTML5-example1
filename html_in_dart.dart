@@ -5,9 +5,11 @@ import 'dart:async';
 class HtmlInDart {
   InputElement numBottles;
   InputElement mySlider;
-  num consumptionRate = 2000;
-  num bottleNumber;
+  int consumptionRate = 2000;
+  int bottleNumber;
   Timer timer;
+  // Timer now requires the use of a Duration to set interval.
+  const ms = const Duration(milliseconds: 1);
 
   HtmlInDart();
 
@@ -128,10 +130,10 @@ class HtmlInDart {
   Future<HtmlInDart> addListeners() {
     final c = new Completer();
 
-    query('#commenceButton').on.click.add(
+    query('#commenceButton').onClick.listen(
         (e) => startConsuming());
 
-    query('#mySlider').on.mouseUp.add((e) {
+    query('#mySlider').onMouseUp.listen((e) {
       consumptionRate = int.parse(mySlider.value);
     });
 
@@ -150,6 +152,10 @@ class HtmlInDart {
 
   void consume() {
     String s, s1, s2, s3, s4;
+    // Timer needs a value of type Duration.  But we are
+    // parsing a value of type int.  We will use the fact that
+    // int * Duration = Duration to satisfy the Timer requirement.
+    var duration;
     if (bottleNumber <= 0) {
       s1 = "Sorry, there are no bottles of Dart beer left. <br>";
       s2 = "Time for more coding with Dart!";
@@ -162,7 +168,9 @@ class HtmlInDart {
       s4 = "${bottleNumber - 1} bottles of Dart beer on the wall. <br><br>";
       s = "$s1 $s2 $s3 $s4";
       bottleNumber -= 1;
-      timer = new Timer(consumptionRate, (Timer timer) => consume());
+      // Duration = Duration * int.
+      duration = ms * consumptionRate;
+      timer = new Timer(duration, (Timer timer) => consume());
     }
     write(s);
   }
