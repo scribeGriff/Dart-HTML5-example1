@@ -170,7 +170,7 @@ class HtmlInDart {
       bottleNumber -= 1;
       // Duration = Duration * int.
       duration = ms * consumptionRate;
-      timer = new Timer(duration, (Timer timer) => consume());
+      timer = new Timer(duration, consume);
     }
     write(s);
   }
